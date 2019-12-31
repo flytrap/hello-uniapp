@@ -1,10 +1,16 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:v12.13.0'
+      args '-p 3333:3000'
+    }
+
+  }
   stages {
     stage('build') {
       agent {
-        node {
-          label 'v12.13.0'
+        docker {
+          image 'node:v12.13.0'
         }
 
       }
